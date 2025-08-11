@@ -69,9 +69,9 @@ export default function AddCustomerPage() {
   return (
     <div className="min-h-screen p-4 sm:p-8 bg-[#081028] flex flex-col">
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mb-6 sm:mb-8">
-      <h1 className="text-2xl sm:text-3xl font-bold text-white">Customers <span className="text-lg font-normal text-gray-400 ml-4">Add Customers</span></h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-white">Customers <span className="text-lg font-normal text-gray-400 ml-4">Add Customers</span></h1>
       </div>
-      
+
       <div className="flex flex-col lg:flex-row gap-4 sm:gap-8">
         {/* Left: Account Settings Nav */}
         <div className="w-full lg:w-72 bg-[#101936] rounded-2xl p-4 sm:p-6 flex flex-col gap-2 border border-[#1B2A4B] min-h-[300px] lg:min-h-[500px]">
@@ -95,7 +95,7 @@ export default function AddCustomerPage() {
             Shipping Address
           </button>
         </div>
-        
+
         {/* Right: Tab Content */}
         <div className="flex-1 bg-[#101936] rounded-2xl p-4 sm:p-8 border-2 border-[#2B3A5B] flex flex-col items-center">
           {tab === "profile" && (
@@ -272,69 +272,71 @@ export default function AddCustomerPage() {
             </form>
           )}
           {tab === "shipping" && (
-            <form className="w-full max-w-xl mx-auto flex flex-col gap-4">
-              <div>
-                <label className="block text-gray-300 mb-1">First Name</label>
-                <input
-                  name="shippingFirstName"
-                  className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 mb-1">Last Name</label>
-                <input
-                  name="shippingLastName"
-                  className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 mb-1">Phone</label>
-                <input
-                  name="shippingPhone"
-                  className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 mb-1">Address</label>
-                <input
-                  name="shippingAddress"
-                  className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 mb-1">City</label>
-                <input
-                  name="shippingCity"
-                  className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 mb-1">State or province</label>
-                <input
-                  name="shippingState"
-                  className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 mb-1">Zip Code</label>
-                <input
-                  name="shippingZip"
-                  className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
-                />
-              </div>
-              <div className="flex justify-end mt-6">
-                <button
-                  type="button"
-                  className="flex items-center gap-2 px-6 sm:px-8 py-3 rounded-lg bg-[#E100FF] text-white font-semibold hover:bg-[#c800d6] transition"
-                >
-                  Save Changes <span className="text-lg">→</span>
-                </button>
-              </div>
-            </form>
+            <div className="w-full">
+              <form className="w-full max-w-xl flex flex-col gap-4 ">
+                <div>
+                  <label className="block text-gray-300 mb-1">First Name</label>
+                  <input
+                    name="shippingFirstName"
+                    className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-300 mb-1">Last Name</label>
+                  <input
+                    name="shippingLastName"
+                    className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-300 mb-1">Phone</label>
+                  <input
+                    name="shippingPhone"
+                    className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-300 mb-1">Address</label>
+                  <input
+                    name="shippingAddress"
+                    className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-300 mb-1">City</label>
+                  <input
+                    name="shippingCity"
+                    className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-300 mb-1">State or province</label>
+                  <input
+                    name="shippingState"
+                    className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-300 mb-1">Zip Code</label>
+                  <input
+                    name="shippingZip"
+                    className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
+                  />
+                </div>
+                <div className="flex justify-end mt-6">
+                  <button
+                    type="button"
+                    className="flex items-center gap-2 px-6 sm:px-8 py-3 rounded-lg bg-[#E100FF] text-white font-semibold hover:bg-[#c800d6] transition"
+                  >
+                    Save Changes <span className="text-lg">→</span>
+                  </button>
+                </div>
+              </form>
+            </div>
           )}
         </div>
       </div>
-      
+
       {/* Change Email Modal */}
       {showEmailModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192B4D]/10 backdrop-blur-sm p-4">
@@ -380,7 +382,7 @@ export default function AddCustomerPage() {
           </div>
         </div>
       )}
-      
+
       {/* Change Username Modal */}
       {showUsernameModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192B4D]/10 backdrop-blur-sm p-4">
@@ -426,7 +428,7 @@ export default function AddCustomerPage() {
           </div>
         </div>
       )}
-      
+
       {/* Change Password Modal */}
       {showPasswordModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192B4D]/10 backdrop-blur-sm p-4">
@@ -482,7 +484,7 @@ export default function AddCustomerPage() {
           </div>
         </div>
       )}
-      
+
       {/* Add Phone Number Modal */}
       {showPhoneModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192B4D]/10 backdrop-blur-sm p-4">
