@@ -492,23 +492,29 @@ export default function AddCustomerPage() {
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-6">Add Phone Number</h2>
             <div className="mb-4">
               <label className="block text-white mb-2 font-medium">Phone Number</label>
-              <div className="flex flex-col sm:flex-row gap-2 mb-2 items-start sm:items-center">
-                <div className="relative w-full sm:w-48" ref={countryDropdownRef}>
+
+              {/* Country Code Dropdown */}
+              <div className="mb-3">
+                <div className="relative w-full" ref={countryDropdownRef}>
                   <button
                     type="button"
-                    className={`w-full flex items-center justify-between bg-[#181F36] text-white rounded-lg px-4 py-3 border border-[#232B43] focus:border-[#E100FF] focus:outline-none`}
+                    className="w-full flex items-center justify-between bg-[#181F36] text-white rounded-lg px-4 py-3 border border-[#232B43] focus:border-[#E100FF] focus:outline-none"
                     onClick={() => setCountryDropdownOpen((open) => !open)}
                   >
                     {phoneModal.country ? (
                       <span className="flex items-center gap-2">
                         {countryData.find(c => c.code === phoneModal.country)?.flag}
-                        <span className="text-white">{countryData.find(c => c.code === phoneModal.country)?.name}</span>
-                        <span className="text-gray-400">({countryData.find(c => c.code === phoneModal.country)?.code})</span>
+                        <span className="text-white text-sm sm:text-base">
+                          {countryData.find(c => c.code === phoneModal.country)?.name}
+                        </span>
+                        <span className="text-gray-400 text-sm">
+                          ({countryData.find(c => c.code === phoneModal.country)?.code})
+                        </span>
                       </span>
                     ) : (
-                      <span className="text-gray-400">country code</span>
+                      <span className="text-gray-400">Select country code</span>
                     )}
-                    <span className="ml-2 text-lg">▼</span>
+                    <span className="ml-2 text-lg transform transition-transform duration-200 {countryDropdownOpen ? 'rotate-180' : ''}">▼</span>
                   </button>
                   {countryDropdownOpen && (
                     <div className="absolute left-0 right-0 mt-2 bg-[#181F36] border border-[#232B43] rounded-lg shadow-lg max-h-60 overflow-y-auto z-50">
@@ -516,50 +522,68 @@ export default function AddCustomerPage() {
                         <button
                           type="button"
                           key={country.code}
-                          className={`w-full flex items-center gap-2 px-4 py-2 hover:bg-[#232B43] ${phoneModal.country === country.code ? 'bg-[#232B43]' : ''}`}
+                          className={`w-full flex items-center gap-2 px-4 py-3 hover:bg-[#232B43] text-left transition-colors ${phoneModal.country === country.code ? 'bg-[#232B43]' : ''
+                            }`}
                           onClick={() => {
                             setPhoneModal({ ...phoneModal, country: country.code });
                             setCountryDropdownOpen(false);
                           }}
                         >
-                          <span>{country.flag}</span>
-                          <span className="text-white">{country.name}</span>
-                          <span className="ml-auto text-gray-400">{country.code}</span>
+                          <span className="text-lg">{country.flag}</span>
+                          <div className="flex flex-col flex-1 min-w-0">
+                            <span className="text-white text-sm font-medium truncate">{country.name}</span>
+                            <span className="text-gray-400 text-xs">{country.code}</span>
+                          </div>
                         </button>
                       ))}
                     </div>
                   )}
                 </div>
+              </div>
+
+              {/* Phone Number Input */}
+              <div>
                 <input
-                  type="text"
-                  className="flex-1 bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43]"
+                  type="tel"
+                  className="w-full bg-[#181F36] text-white rounded-lg px-4 py-3 focus:outline-none border border-[#232B43] focus:border-[#E100FF]"
                   placeholder="Enter phone number..."
                   value={phoneModal.phone}
                   onChange={e => setPhoneModal({ ...phoneModal, phone: e.target.value })}
                 />
               </div>
             </div>
-            <div className="mb-4">
+
+            <div className="mb-6">
               <label className="block text-white mb-2 font-medium">Password</label>
               <input
                 type="password"
                 value={phoneModal.password}
                 onChange={e => setPhoneModal({ ...phoneModal, password: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-[#181F36] text-white border border-[#232B43] focus:outline-none"
+                className="w-full px-4 py-3 rounded-lg bg-[#181F36] text-white border border-[#232B43] focus:outline-none focus:border-[#E100FF]"
                 placeholder="Enter your password..."
               />
             </div>
-            <div className="flex flex-col sm:flex-row justify-end gap-4 mt-8">
+
+            <div className="flex flex-col sm:flex-row justify-end gap-3 mt-8">
               <button
-                className="px-4 py-3 rounded-lg bg-[#232B43] text-white hover:bg-[#181F36] transition"
-                onClick={() => setShowPhoneModal(false)}
+                className="w-full sm:w-auto px-6 py-3 rounded-lg bg-[#232B43] text-white hover:bg-[#181F36] transition-colors order-2 sm:order-1"
+                onClick={() => {
+                  setShowPhoneModal(false);
+                  setPhoneModal({ country: '', phone: '', password: '' });
+                  setCountryDropdownOpen(false);
+                }}
                 type="button"
               >
                 Cancel
               </button>
               <button
-                className="px-4 py-3 rounded-lg bg-[#E100FF] text-white hover:bg-[#c800d6] transition disabled:opacity-50"
-                // onClick={handleSaveChangePhone} // Add logic if needed
+                className="w-full sm:w-auto px-6 py-3 rounded-lg bg-[#E100FF] text-white hover:bg-[#c800d6] transition-colors disabled:opacity-50 order-1 sm:order-2"
+                onClick={() => {
+                  setHasPhone(true);
+                  setShowPhoneModal(false);
+                  setPhoneModal({ country: '', phone: '', password: '' });
+                  setCountryDropdownOpen(false);
+                }}
                 type="button"
               >
                 Save Change
